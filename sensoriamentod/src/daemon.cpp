@@ -21,8 +21,8 @@
 #include <signal.h>
 using namespace std;
 
-#define ARQUIVO_LOG "/home/junior/Desenvolvimento/embarcados/logs/sensoriamento.log"
-#define ARQUIVO_PIPE "/home/junior/Desenvolvimento/embarcados/logs/sensoriamentop"
+#define ARQUIVO_LOG "~/Desenvolvimento/embarcados/logs/sensoriamento.log"
+#define ARQUIVO_PIPE "~/Desenvolvimento/embarcados/logs/sensoriamentop"
 
 bool continuar = true;
 int sensores = 0;
