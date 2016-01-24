@@ -1,0 +1,49 @@
+#Arquivos/Diretorios javaApp
+webcoisas/.settings/
+webcoisas/build/
+webcoisas/.classpath
+webcoisas/.project
+webcoisas/web/WEB-INF/lib/
+
+#Arquivos/Diretorios C++
+sensoriamentod/.settings/
+sensoriamentod/Debug/
+sensoriamentod/Release/
+sensoriamentod/.project
+sensoriamentod/.cproject
+
+#Arquivos/Diretorios Arduino
+
+
+#Arquivos java
+*.class
+*.jar
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
