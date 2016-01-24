@@ -8,7 +8,7 @@ public class LeitorSensoriamento implements
 	Runnable {
 
 	private static final String ARQUIVO_PIPE = 
-			"/home/~/Desenvolvimento/embarcados/logs/sensoriamentop";
+			"~/Desenvolvimento/embarcados/logs/sensoriamentop";
 	
 	private RandomAccessFile pipe = null;
 	private boolean continuar = true;
