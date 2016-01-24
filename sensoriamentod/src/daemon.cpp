@@ -5,8 +5,8 @@
  * no LINUX. Pode ser iniciado e parada a partir
  * da linha de comando.
  *
- *  Created on: 7 de jan de 2016
- *      Author: Luis Paulo
+ *  Created on:24 de jan de 2016
+ *      Author: Cremildo e Manuela
  */
 
 #include <fcntl.h>
