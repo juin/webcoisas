@@ -19,13 +19,18 @@
 #include <syslog.h>
 #include <string.h>
 #include <signal.h>
+#include "../includes/comunicacao.h"
+
 using namespace std;
 
 #define ARQUIVO_LOG "~/Desenvolvimento/embarcados/logs/sensoriamento.log"
 #define ARQUIVO_PIPE "~/Desenvolvimento/embarcados/logs/sensoriamentop"
+#define PORTA "/dev/ttyACM0"
 
 bool continuar = true;
 int sensores = 0;
+
+Comunicacao com = NULL;
 
 int daemonize() {
 	int resultado = EXIT_SUCCESS;
@@ -68,7 +73,32 @@ bool pipeIniciado() {
 }
 
 int lerSensores() {
-	sensores++;
+	char ai = 0, at = 0;
+	int sensores = -1;
+
+	//realizar a leitura do caracter "A" (Inicial)
+	int resultado;
+
+	resultado = com.ler((char*) &ai, sizeof(ai));
+
+
+
+		if ((resultado == EXIT_SUCCESS) && (ai == 'I')) {
+			//se a leitura de 'A' correr bem ler a altitude
+			resultado = com.ler((char*) &sensores, sizeof(sensores));
+			if (resultado == EXIT_SUCCESS) {
+				int is = 0;
+				//se a leitura da altitude correr bem
+				resultado = com.ler((char*) &at, sizeof(at));
+				if (resultado == EXIT_SUCCESS && (at == 'T')) {
+					/*ut << "id = " << info.id << endl;
+					cout << "velocidade = " << info.velocidade << endl;
+					cout << "altitude = " << info.altitude << endl;
+					cout << "movimento = " << info.movimento << endl;*/
+					sensores = is;
+				}
+			}
+		}
 
 	return sensores;
 }
@@ -120,12 +150,21 @@ int main(int argc, char* argv[]) {
 		ofstream log(ARQUIVO_LOG, ios_base::out | ios_base::app);
 		log << "Arquivo de log iniciado!" << endl;
 
+		//Inicia comunicação com o arduino
+			com = Comunicacao(PORTA);
+			if (com.iniciar() !=0){
+				log << "Falha de inicializacao de comunicação dos sensores" << endl;
+				exit(1);
+			}
+
 		log << "Pipe sendo criando..." << endl;
 		if (!pipeIniciado()) {
 			log << "Falha de inicializacao do PIPE" << endl;
 
-			exit(1);
+			exit(2);
 		}
+
+
 
 		continuar = true;
 		while (continuar) {
@@ -139,6 +178,9 @@ int main(int argc, char* argv[]) {
 		}
 
 		unlink(ARQUIVO_PIPE);
+		//finaliza a comunicação com o arduino
+		com.finalizar();
+
 
 		log << "Daemon de sensoriamento finalizado!" << endl;
 	}
