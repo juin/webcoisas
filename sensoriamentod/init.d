@@ -2,7 +2,7 @@
 #
 # Daemon Name: sensoriamentod
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DPATH=/home/junior/Desenvolvimento/embarcados/workspace/sensoriamentod/Release
+DPATH=/home/junior/Desenvolvimento/embarcados/projetos/webcoisas/sensoriamentod/Release
 DESC="Daemon de leitura dos sensores para WOT"
 NAME=sensoriamentod
 DAEMON=$DPATH/$NAME
